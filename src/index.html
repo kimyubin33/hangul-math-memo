@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="Content-Security-Policy"
+        content="default-src 'self'; style-src 'self' 'unsafe-inline'; font-src 'self' data:; img-src 'self' data:; script-src 'self'" />
+  <title>한글 수식 메모</title>
+  <link rel="stylesheet" href="../node_modules/katex/dist/katex.min.css" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="titlebar">
+    <span class="title">한글 수식 메모</span>
+    <div class="win-buttons">
+      <button id="btn-help" class="icon-btn" title="문법 도움말 (F1)" aria-label="도움말">
+        <svg viewBox="0 0 16 16"><circle cx="8" cy="8" r="6.2"/><path d="M6.2 6.3a1.9 1.9 0 1 1 2.6 1.8c-.5.2-.8.6-.8 1.1v.5"/><circle cx="8" cy="11.6" r=".5" class="fill"/></svg>
+      </button>
+      <button id="btn-pin" class="icon-btn" title="항상 위에 고정" aria-label="항상 위에 고정" aria-pressed="true">
+        <svg viewBox="0 0 16 16"><path d="M9.8 1.8l4.4 4.4-1.6.6-2.6 2.6-.4 3-2.2-2.2L3.6 14 2 12.4l3.8-3.8-2.2-2.2 3-.4 2.6-2.6z"/></svg>
+      </button>
+      <button id="btn-min" class="icon-btn" title="최소화" aria-label="최소화">
+        <svg viewBox="0 0 16 16"><path d="M3.5 8.5h9"/></svg>
+      </button>
+      <button id="btn-close" class="icon-btn close" title="닫기" aria-label="닫기">
+        <svg viewBox="0 0 16 16"><path d="M4 4l8 8M12 4l-8 8"/></svg>
+      </button>
+    </div>
+  </header>
+
+  <main>
+    <textarea id="input" spellcheck="false" placeholder="예) 루트(3+1)&#10;    분수(1, 2) + x제곱"></textarea>
+
+    <section class="preview-wrap" aria-live="polite">
+      <div id="preview" class="preview"></div>
+      <div id="error" class="error" hidden></div>
+    </section>
+
+    <div class="latex-row">
+      <code id="latex" title="변환된 LaTeX"></code>
+    </div>
+
+    <div class="copy-row" role="group" aria-label="복사 형식">
+      <button class="copy-btn" data-format="inline" title="$수식$ — 문장 속 수식">$ 인라인 $</button>
+      <button class="copy-btn" data-format="block" title="$$수식$$ — 한 줄 전체 수식">$$ 블록 $$</button>
+      <button class="copy-btn" data-format="raw" title="LaTeX 코드만">LaTeX만</button>
+    </div>
+  </main>
+
+  <footer class="statusbar">
+    <span class="hint"><kbd id="mod-key">Ctrl</kbd>+<kbd>Enter</kbd> 복사</span>
+    <label class="opacity" title="투명도">
+      <svg viewBox="0 0 16 16"><circle cx="8" cy="8" r="5.5"/><path d="M8 2.5v11a5.5 5.5 0 0 0 0-11z" class="fill"/></svg>
+      <input id="opacity" type="range" min="0.3" max="1" step="0.05" value="1" />
+    </label>
+  </footer>
+
+  <div id="toast" class="toast" role="status" hidden></div>
+
+  <aside id="help" class="help" hidden>
+    <div class="help-head">
+      <strong>쓰는 법</strong>
+      <button id="help-close" class="icon-btn" aria-label="도움말 닫기">
+        <svg viewBox="0 0 16 16"><path d="M4 4l8 8M12 4l-8 8"/></svg>
+      </button>
+    </div>
+    <p class="help-intro">말하듯이 <b>이름(내용)</b>으로 쓰면 됩니다. 예시를 누르면 입력칸에 들어갑니다.</p>
+    <ul id="examples" class="examples"></ul>
+    <p class="help-foot">괄호 없이 쓰는 말: 알파·베타·세타·파이·시그마, 곱하기·나누기·플마, 이하·이상·무한대, 제곱·세제곱, 도(°) 등.<br />
+      <b>\frac{1}{2}</b> 같은 LaTeX를 직접 섞어 써도 됩니다.</p>
+  </aside>
+
+  <script src="../node_modules/katex/dist/katex.min.js"></script>
+  <script src="parser.js"></script>
+  <script src="renderer.js"></script>
+</body>
+</html>

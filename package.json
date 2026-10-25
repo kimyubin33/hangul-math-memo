@@ -1,0 +1,84 @@
+{
+  "name": "hangul-math-memo",
+  "productName": "한글 수식 메모",
+  "version": "0.1.0",
+  "description": "루트(3+1)처럼 말하듯 쓰면 마크다운 수식($LaTeX$)으로 바꿔 주는 스티커 메모형 입력기",
+  "main": "main.js",
+  "author": "김유빈",
+  "license": "MIT",
+  "scripts": {
+    "start": "electron .",
+    "test": "node --test test/parser.test.js",
+    "dist": "electron-builder --publish never"
+  },
+  "build": {
+    "appId": "io.github.hangulmathmemo",
+    "productName": "한글 수식 메모",
+    "artifactName": "HangulMathMemo-${version}-${os}-${arch}.${ext}",
+    "files": [
+      "main.js",
+      "preload.js",
+      "src/**/*",
+      "build/icon.png",
+      "node_modules/katex/dist/**/*"
+    ],
+    "directories": {
+      "output": "dist"
+    },
+    "win": {
+      "target": [
+        {
+          "target": "nsis",
+          "arch": [
+            "x64"
+          ]
+        },
+        {
+          "target": "portable",
+          "arch": [
+            "x64"
+          ]
+        }
+      ],
+      "icon": "build/icon.png"
+    },
+    "portable": {
+      "artifactName": "HangulMathMemo-${version}-portable.${ext}"
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true,
+      "shortcutName": "한글 수식 메모"
+    },
+    "mac": {
+      "target": [
+        {
+          "target": "dmg",
+          "arch": [
+            "arm64",
+            "x64"
+          ]
+        }
+      ],
+      "category": "public.app-category.productivity",
+      "icon": "build/icon.png"
+    },
+    "linux": {
+      "target": [
+        "AppImage"
+      ],
+      "category": "Utility",
+      "icon": "build/icon.png",
+      "syncDesktopName": true
+    },
+    "publish": null
+  },
+  "dependencies": {
+    "katex": "^0.19.1"
+  },
+  "devDependencies": {
+    "electron": "^45.0.0",
+    "electron-builder": "^26.18.0"
+  },
+  "desktopName": "hangul-math-memo.desktop"
+}
