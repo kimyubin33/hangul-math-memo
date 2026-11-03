@@ -17,10 +17,14 @@
 
 [**Releases**](../../releases/latest) 페이지에서 내 컴퓨터에 맞는 파일을 받으세요.
 
+> 내 Windows가 ARM인지 모르겠다면: **설정 → 시스템 → 정보 → 시스템 종류**에 "ARM 기반 프로세서"라고 나오면 ARM용을 받으세요.
+
 | 운영체제 | 파일 |
 | --- | --- |
 | Windows (설치형) | `HangulMathMemo-버전-win-x64.exe` |
-| Windows (설치 없이 실행) | `HangulMathMemo-버전-portable.exe` |
+| Windows (설치 없이 실행) | `HangulMathMemo-버전-portable-x64.exe` |
+| Windows ARM (스냅드래곤 노트북 등, 설치형) | `HangulMathMemo-버전-win-arm64.exe` |
+| Windows ARM (설치 없이 실행) | `HangulMathMemo-버전-portable-arm64.exe` |
 | macOS (M1 이후) | `HangulMathMemo-버전-mac-arm64.dmg` |
 | macOS (인텔) | `HangulMathMemo-버전-mac-x64.dmg` |
 | Linux | `HangulMathMemo-버전-linux-x86_64.AppImage` |

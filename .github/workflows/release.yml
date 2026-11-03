@@ -30,8 +30,18 @@ jobs:
       - run: npm ci
       - run: npm test
 
-      - name: 설치 파일 만들기
+      - name: 설치 파일 만들기 (macOS·Linux)
+        if: runner.os != 'Windows'
         run: npx electron-builder --publish never
+
+      # Windows는 x64와 ARM64를 따로 빌드해야 설치 파일이 각각 나옵니다
+      - name: 설치 파일 만들기 (Windows x64)
+        if: runner.os == 'Windows'
+        run: npx electron-builder --win --x64 --publish never
+
+      - name: 설치 파일 만들기 (Windows ARM64)
+        if: runner.os == 'Windows'
+        run: npx electron-builder --win --arm64 --publish never
 
       - name: Artifacts로 보관
         uses: actions/upload-artifact@v4

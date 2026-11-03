@@ -1,7 +1,7 @@
 {
   "name": "hangul-math-memo",
   "productName": "한글 수식 메모",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "루트(3+1)처럼 말하듯 쓰면 마크다운 수식($LaTeX$)으로 바꿔 주는 스티커 메모형 입력기",
   "main": "main.js",
   "author": "김유빈",
@@ -27,23 +27,13 @@
     },
     "win": {
       "target": [
-        {
-          "target": "nsis",
-          "arch": [
-            "x64"
-          ]
-        },
-        {
-          "target": "portable",
-          "arch": [
-            "x64"
-          ]
-        }
+        "nsis",
+        "portable"
       ],
       "icon": "build/icon.png"
     },
     "portable": {
-      "artifactName": "HangulMathMemo-${version}-portable.${ext}"
+      "artifactName": "HangulMathMemo-${version}-portable-${arch}.${ext}"
     },
     "nsis": {
       "oneClick": false,
